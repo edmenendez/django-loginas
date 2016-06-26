@@ -38,7 +38,8 @@ def login_as(user, request, store_original_user=True):
 
     # Set a flag on the session
     if store_original_user:
-        messages.warning(request, la_settings.MESSAGE_LOGIN_SWITCH.format(username=user.username))
+        # This causes problems when your custom user model doesn't include username field.
+        #messages.warning(request, la_settings.MESSAGE_LOGIN_SWITCH.format(username=user.username))
         request.session[la_settings.USER_SESSION_FLAG] = signer.sign(original_user_pk)
 
 
